@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PrintForge AI</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">P</span>
+      <span class="brand-name">PrintForge<span>AI</span></span>
+    </a>
+ 
+    <nav class="nav-links">
+      <a href="#workspace">Generator</a>
+      <a href="#gallery">Projects</a>
+    </nav>
+ 
+    <div class="nav-actions">
+      <button class="btn-ghost" type="button" data-open-auth="login">Sign In</button>
+      <button class="btn-solid" type="button" data-open-auth="signup">Sign Up</button>
+    </div>
+ 
+    <button class="nav-toggle" type="button" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+ 
+  <div class="nav-mobile" id="navMobile">
+    <a href="#workspace">Generator</a>
+    <a href="#gallery">Projects</a>
+    <div class="nav-mobile-actions">
+      <button class="btn-ghost" type="button" data-open-auth="login">Sign In</button>
+      <button class="btn-solid" type="button" data-open-auth="signup">Sign Up</button>
+    </div>
+  </div>
+</header>
+ 
+<main id="top">
+ 
+  <section class="workspace" id="workspace">
+ 
+    <div class="workspace-heading">
+      <h1>Create with PrintForge AI</h1>
+      <p>Turn your ideas into printable coloring pages.</p>
+    </div>
+ 
+    <div class="composer" id="composer">
+ 
+      <div class="composer-ring" aria-hidden="true"></div>
+      <div class="composer-edge" aria-hidden="true"></div>
+ 
+      <div class="composer-body">
+ 
+        <textarea
+          id="idea"
+          maxlength="1000"
+          rows="4"
+          placeholder="Describe your coloring book idea — for example, a 20-page coloring book about cute dinosaurs exploring a jungle, clean black-and-white line art, no shading."
+        ></textarea>
+ 
+        <div class="composer-toolbar">
+ 
+          <button class="settings-trigger" type="button" id="settingsTrigger" aria-haspopup="true" aria-expanded="false">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            Settings
+          </button>
+ 
+          <div class="toolbar-right">
+            <span class="char-count"><span id="charCount">0</span>/1000</span>
+            <button class="create-button" type="button" id="generateBtn">
+              <span id="buttonText">Create</span>
+            </button>
+          </div>
+ 
+        </div>
+ 
+      </div>
+ 
+      <div class="settings-popover" id="settingsPopover" role="dialog" aria-label="Image settings">
+
+  <div class="popover-title">Image settings</div>
+
+  <div class="setting-control">
+    <label for="printSize">Print Size</label>
+    <select id="printSize">
+      <option value="letter" selected>US Letter — 8.5 × 11 in</option>
+      <option value="a4">A4 — 8.27 × 11.69 in</option>
+      <option value="8x10">8 × 10 in</option>
+      <option value="8.25x11">8.25 × 11 in</option>
+    </select>
+  </div>
+
+  <div class="setting-control">
+    <label for="aspectRatio">Aspect Ratio</label>
+    <select id="aspectRatio">
+      <option value="letter" selected>8.5 : 11 — US Letter</option>
+      <option value="a4">210 : 297 — A4</option>
+      <option value="8x10">4 : 5 — 8 × 10</option>
+      <option value="8.25x11">3 : 4 — 8.25 × 11</option>
+    </select>
+  </div>
+
+  <div class="setting-control">
+    <label for="resolution">Resolution</label>
+    <select id="resolution">
+      <option value="300" selected>300 DPI — Print Ready</option>
+      <option value="150">150 DPI — Standard</option>
+    </select>
+  </div>
+
+  <div class="setting-control">
+    <label for="fileFormat">File Format</label>
+    <select id="fileFormat">
+      <option value="png" selected>PNG — Best for Line Art</option>
+      <option value="jpg">JPG</option>
+    </select>
+  </div>
+
+  <div class="setting-control">
+    <label for="illustrationStyle">Illustration Style</label>
+    <select id="illustrationStyle">
+      <option value="clean-line-art" selected>
+        Clean Black & White Line Art
+      </option>
+      <option value="bold-outline">
+        Bold Thick Outlines — Kids
+      </option>
+      <option value="simple-shapes">
+        Simple Large Shapes — Preschool
+      </option>
+      <option value="detailed-line-art">
+        Detailed Line Art — Advanced
+      </option>
+    </select>
+  </div>
+
+  <div class="setting-control">
+    <label for="imageQuality">Quality</label>
+    <select id="imageQuality">
+      <option value="high" selected>High</option>
+      <option value="standard">Standard</option>
+    </select>
+  </div>
+
+  <p class="popover-note">
+    Page count is set by what you write in your prompt.
+  </p>
+
+</div>
+ 
+      <div class="popover-scrim" id="popoverScrim"></div>
+ 
+    </div>
+ 
+    <p class="composer-hint">Include the number of pages directly in your prompt — for example, "a 20-page coloring book."</p>
+ 
+    <div class="generation-status" id="generationStatus">
+      <div class="status-track"><div class="status-fill"></div></div>
+      <p id="statusText">Generating your coloring pages...</p>
+    </div>
+ 
+  </section>
+ 
+  <section class="gallery-section" id="gallery">
+ 
+    <div class="gallery-header">
+      <div>
+        <h2>Generated pages</h2>
+        <p>Review each page, then combine them into a printable PDF.</p>
+      </div>
+      <div class="gallery-count">
+        <strong id="previewCount">0</strong>
+        <span>pages</span>
+      </div>
+    </div>
+ 
+    <div class="gallery-grid" id="previewGallery"></div>
+ 
+    <div class="pdf-bar" id="pdfBar">
+      <div class="pdf-copy">
+        <h3>Ready to create your PDF?</h3>
+        <p>Combine all generated pages into one printable file.</p>
+      </div>
+      <div class="pdf-actions">
+        <button class="btn-solid" type="button" id="createPdfBtn">Create PDF</button>
+        <a class="btn-ghost pdf-download" id="downloadPdfBtn" href="#" download style="display:none;">Download PDF</a>
+      </div>
+    </div>
+ 
+  </section>
+ 
+</main>
+ 
+<div class="modal-overlay" id="authModal">
+  <div class="modal-card">
+ 
+    <button class="modal-close" type="button" id="authClose" aria-label="Close">×</button>
+ 
+    <div class="auth-form active" id="loginForm">
+      <h2>Welcome back</h2>
+      <p>Sign in to continue to PrintForge AI.</p>
+ 
+      <label for="loginEmail">Email</label>
+      <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email">
+ 
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password">
+ 
+      <button class="auth-submit" type="button" id="loginSubmit">Sign In</button>
+      <p class="auth-note" id="loginNote"></p>
+ 
+      <p class="auth-switch">Don't have an account? <button type="button" data-open-auth="signup">Create account</button></p>
+    </div>
+ 
+    <div class="auth-form" id="signupForm">
+      <h2>Create your account</h2>
+      <p>Save your projects and generated books.</p>
+ 
+      <label for="signupName">Name</label>
+      <input id="signupName" type="text" placeholder="Your name" autocomplete="name">
+ 
+      <label for="signupEmail">Email</label>
+      <input id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email">
+ 
+      <label for="signupPassword">Password</label>
+      <input id="signupPassword" type="password" placeholder="Create a password" autocomplete="new-password">
+ 
+      <label for="signupConfirm">Confirm password</label>
+      <input id="signupConfirm" type="password" placeholder="Confirm your password" autocomplete="new-password">
+ 
+      <button class="auth-submit" type="button" id="signupSubmit">Create Account</button>
+      <p class="auth-note" id="signupNote"></p>
+ 
+      <p class="auth-switch">Already have an account? <button type="button" data-open-auth="login">Sign in</button></p>
+    </div>
+ 
+  </div>
+</div>
+ 
+<footer class="site-footer">
+  <span class="footer-brand">PrintForge<span>AI</span></span>
+  <span class="footer-copy">AI-generated printable coloring books.</span>
+  <span class="footer-year">© 2026</span>
+</footer>
+ 
+<script src="script.js"></script>
+</body>
+</html>
+ 
